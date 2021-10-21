@@ -51,6 +51,7 @@ public class 완주하지못한선수 {
         }
 
         answer = participant[participant.length - 1];
+        // 이 경우는 Participant의 마지막 선수일 경우
 
         return answer;
     }
