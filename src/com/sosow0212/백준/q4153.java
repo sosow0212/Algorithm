@@ -1,4 +1,4 @@
-package com.sosow0212;
+package com.sosow0212.백준;
 
 import java.util.Arrays;
 import java.util.Scanner;
