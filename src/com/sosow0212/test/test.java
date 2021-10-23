@@ -25,7 +25,6 @@ class Solution {
                 }
             }
         }
-
         return answer;
     }
 
