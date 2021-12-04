@@ -1,4 +1,4 @@
-package study;
+package com.sosow0212.백준;
 import java.util.*;
 public class q6749 {
 

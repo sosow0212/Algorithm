@@ -2,7 +2,7 @@ package study;
 
 import java.util.Scanner;
 
-public class Main {
+public class q2442 {
 
 	public static void main(String[] args) {
 		
