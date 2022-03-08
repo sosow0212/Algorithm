@@ -1,6 +1,8 @@
+package com.sosow0212.백준;
+
 import java.util.Scanner;
 
-public class Main{
+public class q3004 {
     public static void main(String[] args){
         Scanner sc = new Scanner(System.in);
         int cut = sc.nextInt();
