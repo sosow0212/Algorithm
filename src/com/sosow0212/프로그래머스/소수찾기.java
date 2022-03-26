@@ -3,7 +3,7 @@ package com.sosow0212.프로그래머스;
 import java.util.HashSet;
 import java.util.Iterator;
 
-class 소수구하기 {
+class 소수찾기 {
     public static HashSet<Integer> numberSet = new HashSet<>();
 
     public static boolean isPrime(int num) {
@@ -58,7 +58,7 @@ class 소수구하기 {
     }
 
     public static void main(String[] args) {
-        소수구하기 sol = new 소수구하기();
+        소수찾기 sol = new 소수찾기();
         System.out.println(sol.solution("17"));
 
     }
