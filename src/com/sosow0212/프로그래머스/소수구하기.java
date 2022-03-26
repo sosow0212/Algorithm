@@ -4,9 +4,9 @@ import java.util.HashSet;
 import java.util.Iterator;
 
 class 소수구하기 {
-    HashSet<Integer> numberSet = new HashSet<>();
+    public static HashSet<Integer> numberSet = new HashSet<>();
 
-    public boolean isPrime(int num) {
+    public static boolean isPrime(int num) {
         // 1. 0과 1은 소수가 아니다.
         if (num == 0 || num == 1)
             return false;
@@ -23,7 +23,7 @@ class 소수구하기 {
         return true;
     }
 
-    public void recursive(String comb, String others) {
+    public static void recursive(String comb, String others) {
         // comb = 지금까지 조합한 숫자
         // others = 아직 조합하지 않은 숫자
 
@@ -37,7 +37,7 @@ class 소수구하기 {
         }
     }
 
-    public int solution(String numbers) {
+    public static int solution(String numbers) {
         int count = 0;
 
         // 1. 모든 조합의 숫자를 만든다. > recursive("", number)
