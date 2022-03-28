@@ -4,6 +4,7 @@ import java.util.Arrays;
 
 public class 완주하지못한선수2 {
     public static String solution(String[] participant, String[] completion) {
+
         Arrays.sort(participant);
         Arrays.sort(completion);
 
