@@ -17,7 +17,7 @@ public class 이상한문자만들기 {
     public static void main(String[] args) {
         이상한문자만들기 sol = new 이상한문자만들기();
 
-        String s = "try hello world";
+        String s = "try hello worl";
         System.out.println(sol.solution(s));
     }
 }
