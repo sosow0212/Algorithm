@@ -1,28 +1,39 @@
 package com.sosow0212.프로그래머스;
 
-import java.util.Arrays;
+import java.util.HashMap;
 
+// 해시로 풀이
 public class 완주하지못한선수2 {
-    public static String solution(String[] participant, String[] completion) {
+    public String solution(String[] participant, String[] completion) {
+        String answer = "";
 
-        Arrays.sort(participant);
-        Arrays.sort(completion);
+        HashMap<String, Integer> hashMap = new HashMap<>();
 
-        // 1 2 3
-        // 1 2
-        for(int i=0; i< completion.length; i++) {
-            if(!completion[i].equals(participant[i])) {
-                return participant[i];
+        for(String str : participant) {
+            hashMap.put(str, hashMap.getOrDefault(str, 0) + 1);
+        }
+
+
+        for (String str : completion) {
+            hashMap.put(str, hashMap.get(str) - 1);
+        }
+
+        for(String str : participant) {
+            if(hashMap.get(str) == 1) {
+                answer = str;
             }
         }
 
-        return participant[participant.length-1];
-
+        return answer;
     }
 
     public static void main(String[] args) {
-        String[] participant = {"leo", "eden", "kiki"};
-        String[] completion = {"eden", "kiki"};
-        System.out.println(solution(participant, completion));
+        완주하지못한선수2 sol = new 완주하지못한선수2();
+
+        String[] participant = {"leo", "kiki", "eden"};
+        String[] completion = {"kiki", "eden"};
+
+        System.out.println(sol.solution(participant, completion));
+
     }
 }
