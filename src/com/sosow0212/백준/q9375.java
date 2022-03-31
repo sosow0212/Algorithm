@@ -17,14 +17,14 @@ public class q9375 {
             for(int i=0; i<n; i++) {
                 String a = sc.next();
                 String b = sc.next();
-//                hashMap.put(b , hashMap.getOrDefault(hashMap.get(b), 0) + 1);
+                hashMap.put(b, hashMap.getOrDefault(b, 0) + 1);
 
-                if(hashMap.containsKey(b)) {
-                    int index = hashMap.get(b);
-                    hashMap.put(b, index + 1);
-                } else {
-                    hashMap.put(b, 1);
-                }
+//                if(hashMap.containsKey(b)) {
+//                    int index = hashMap.get(b);
+//                    hashMap.put(b, index + 1);
+//                } else {
+//                    hashMap.put(b, 1);
+//                }
             }
 
             for(int val : hashMap.values()) {
