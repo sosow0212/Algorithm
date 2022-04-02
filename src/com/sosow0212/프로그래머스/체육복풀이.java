@@ -8,10 +8,12 @@ class 체육복풀이 {
         HashSet<Integer> lostSet = new HashSet<>();
         HashSet<Integer> reserveSet = new HashSet<>();
 
-        for (int i : reserve)
+        for(int i : reserve) {
             reserveSet.add(i);
-        for (int i : lost) {
-            if (reserveSet.contains(i)) {
+        }
+
+        for(int i : lost) {
+            if(reserveSet.contains(i)) {
                 reserveSet.remove(i);
             } else {
                 lostSet.add(i);
@@ -19,14 +21,13 @@ class 체육복풀이 {
         }
 
 
-        for (int i : reserveSet) {
-            if (lostSet.contains(i - 1)) {
-                lostSet.remove(i - 1);
-            } else if (lostSet.contains(i + 1)) {
-                lostSet.remove(i + 1);
+        for(int i : reserveSet) {
+            if(lostSet.contains(i-1)) {
+                lostSet.remove(i-1);
+            } else if(lostSet.contains(i+1)) {
+                lostSet.remove(i+1);
             }
         }
-
 
         return n - lostSet.size();
     }
