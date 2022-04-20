@@ -1,4 +1,4 @@
-
+# 기본 값 설정
 loginCheck = False
 loginCount = 0
 
