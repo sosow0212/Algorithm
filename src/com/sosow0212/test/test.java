@@ -9,7 +9,7 @@ public class test {
 
         int n = sc.nextInt();
 
-        // i = 1,2,3,4 5 (i=1, i<=n)
+        // i = 1,2,3,4, 5 (i=1, i<=n)
         // i = 0,1,2,3,4 (i=0; i<n)
         for (int i = 1; i <= n; i++) {
             for (int j = 1; j <= n - i; j++) {
