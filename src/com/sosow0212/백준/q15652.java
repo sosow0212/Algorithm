@@ -1,50 +1,36 @@
-package study;
+package com.sosow0212.백준;
 
 import java.util.Scanner;
 
 public class q15652 {
-	
-	private static int n,m;
-	private static int[] map;
-	private static boolean[] visit;
-	
-	public static void main(String[] args) {
-		
-		Scanner sc = new Scanner(System.in);
-		
-		n = sc.nextInt();
-		m = sc.nextInt();
-		
-		map = new int[m];
-		visit = new boolean[n+1];
-		
-		cycle(0);
-		
-	}
+    static int n, m;
+    static int[] arr;
 
-	private static void cycle(int start) {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
 
-		if (start == m) {
-			
-			for (int i=0; i<m; i++) {
-				System.out.print(map[i] + " ");
-			}
-			System.out.println();
-			
-		} else {
-			
-			for (int i=1; i<=n; i++) {
-				
-				if (start == 0) {
-					map[start] = i;
-					cycle(start+1);
-				} else if (map[start-1] <= i) {
-					map[start] = i;
-					cycle(start+1);
-				}
-			}
-			
-		}
-		
-	}
+        n = sc.nextInt();
+        m = sc.nextInt();
+
+        arr = new int[m];
+
+        dfs(1, 0);
+
+    }
+
+    static void dfs(int at, int depth) {
+        if (depth == m) {
+            for (int a : arr) {
+                System.out.print(a + " ");
+            }
+            System.out.println();
+			return;
+        }
+
+        for (int i = at; i <= n; i++) {
+            arr[depth] = i;
+            dfs(i, depth + 1);
+        }
+		return;
+    }
 }
