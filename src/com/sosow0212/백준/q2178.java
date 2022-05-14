@@ -25,10 +25,7 @@ public class q2178 {
                 int nX = nowX + dx[i];
                 int nY = nowY + dy[i];
 
-                if(nX < 0 || nY < 0 || nX >= n || nY >= m)
-                    continue;
-
-                if(Visited[nX][nY] || Graph[nX][nY] == 0)
+                if(nX < 0 || nY < 0 || nX >= n || nY >= m || Visited[nX][nY] || Graph[nX][nY] == 0)
                     continue;
 
                 q.add(new int[] {nX, nY});
