@@ -44,7 +44,7 @@ public class q15655 {
             if(!visited[i]) {
                 visited[i] = true;
                 arr[depth] = nums[i];
-                dfs(at + 1, depth + 1);
+                dfs(i + 1, depth + 1);
                 visited[i] = false;
             }
 
