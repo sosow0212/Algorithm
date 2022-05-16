@@ -1,36 +1,24 @@
 package com.sosow0212.test;
 
-
-import java.util.LinkedList;
-import java.util.Queue;
 import java.util.Scanner;
 
 public class test {
-    static int n, m;
-    static int[][] graph;
+    static int n;
+    static char[][] graph;
     static boolean[][] visited;
-    static int[][] pos = {{-1,0}, {1,0}, {0,-1}, {0,1}};
+    static int count = 0;
+    static int[][] pos = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
 
-    static void bfs(int x, int y) {
-        Queue<int[]> queue = new LinkedList<>();
-        queue.add(new int[] {x, y});
+    static void dfs(int x, int y) {
+        visited[x][y] = true;
+        char temp = graph[x][y];
 
-        while(!queue.isEmpty()) {
-            int[] now = queue.poll();
-            int nowX = now[0];
-            int nowY = now[1];
+        for (int i = 0; i < pos.length; i++) {
+            int nx = x + pos[i][0];
+            int ny = y + pos[i][1];
 
-            for(int i=0; i<pos.length; i++) {
-                int nX = nowX + pos[i][0];
-                int nY = nowY + pos[i][1];
-
-                if(nX < 0 || nX >= n || nY < 0 || nY >= m || visited[nX][nY] || graph[nX][nY] == 0) {
-                    continue;
-                }
-
-                visited[nX][nY] = true;
-                graph[nX][nY] = graph[nowX][nowY] + 1;
-                queue.add(new int[] {nX, nY});
+            if (nx >= 0 && nx < n && ny >= 0 && ny < n && !visited[nx][ny] && graph[nx][ny] == temp) {
+                dfs(nx, ny);
             }
         }
     }
@@ -39,20 +27,45 @@ public class test {
         Scanner sc = new Scanner(System.in);
 
         n = sc.nextInt();
-        m = sc.nextInt();
+        graph = new char[n][n];
+        visited = new boolean[n][n];
 
-        graph = new int[n][m];
-        visited = new boolean[n][m];
-
-        for(int i=0; i<n; i++) {
+        for (int i = 0; i < n; i++) {
             String str = sc.next();
-            for(int j=0; j<m; j++) {
-                graph[i][j] = str.charAt(j) - '0';
+            for (int j = 0; j < n; j++) {
+                graph[i][j] = str.charAt(j);
             }
         }
 
-        visited[0][0] = true;
-        bfs(0,0);
-        System.out.println(graph[n-1][m-1]);
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                if (!visited[i][j]) {
+                    dfs(i, j);
+                    count++;
+                }
+            }
+        }
+        System.out.print(count + " ");
+        count = 0;
+        visited = new boolean[n][n];
+
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                if (graph[i][j] == 'G')
+                    graph[i][j] = 'R';
+            }
+        }
+
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                if (!visited[i][j]) {
+                    dfs(i, j);
+                    count++;
+                }
+            }
+        }
+        System.out.println(count);
+
+
     }
 }
