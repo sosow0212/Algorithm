@@ -2,7 +2,7 @@ package com.sosow0212.백준;
 
 import java.util.*;
 
-public class q1926 {
+public class q1926_dfs {
     static int n, m;
     static int[][] graph;
     static boolean[][] visited;
