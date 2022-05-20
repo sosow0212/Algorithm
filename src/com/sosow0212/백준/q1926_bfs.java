@@ -6,9 +6,9 @@ public class q1926_bfs {
     static int n, m;
     static int[][] graph;
     static boolean[][] visited;
+
     static int count = 0;
     static int[][] pos = {{0, -1}, {0, 1}, {1, 0}, {-1, 0}};
-
 
     static void bfs(int x, int y) {
         visited[x][y] = true;
