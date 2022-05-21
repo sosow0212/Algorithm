@@ -16,5 +16,6 @@ public class q10156 {
 			System.out.println(sum - m);
 		}
 	}
+// 
 
 }
