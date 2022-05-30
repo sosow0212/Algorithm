@@ -11,7 +11,7 @@ public class q1926_bfs {
 
     static void bfs(int x, int y) {
         visited[x][y] = true;
-        // true로 해야지 방문 처리
+        // true로 해야지 방문
         Queue<int[]> queue = new LinkedList<>();
         queue.add(new int[]{x, y});
 
