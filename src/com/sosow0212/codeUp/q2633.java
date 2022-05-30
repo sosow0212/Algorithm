@@ -18,7 +18,7 @@ public class q2633 {
             if(arr[i] >= k && visit == false) {
                 visit = true;
                 ans = i;
-            }
+            }//
         }
 
         if(visit == false) {
