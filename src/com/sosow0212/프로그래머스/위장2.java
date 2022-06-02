@@ -4,7 +4,9 @@ import java.util.HashMap;
 import java.util.Iterator;
 
 class 위장2 {
+
     public int solution(String[][] clothes) {
+
         int ans = 1;
 
         HashMap<String, Integer> hashMap = new HashMap<>();
