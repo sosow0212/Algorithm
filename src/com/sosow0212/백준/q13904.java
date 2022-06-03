@@ -15,7 +15,7 @@ public class q13904 {
             work[i][0] = sc.nextInt();
             work[i][1] = sc.nextInt();
         }
-
+        // 키 순 정렬
         Arrays.sort(work, new Comparator<int[]>() {
             @Override
             public int compare(int[] o1, int[] o2) {
