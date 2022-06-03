@@ -18,7 +18,7 @@ public class 모험가길드 {
 
         Arrays.sort(arr);
 
-        // 1 2 2 2 3
+        // 1 2 2 2, 3 >> 그리디
 
         for (int i = 0; i < n; i++) {
             count += 1;
