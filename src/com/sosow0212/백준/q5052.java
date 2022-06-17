@@ -13,7 +13,7 @@ public class q5052 {
             int n = sc.nextInt();
             HashMap<String, String> hashMap = new HashMap<>();
             String[] arr = new String[n];
-            boolean check = false;
+            boolean check = false;//
 
             for (int i = 0; i < n; i++) {
                 arr[i] = sc.next();
