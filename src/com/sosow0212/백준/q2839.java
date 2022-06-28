@@ -9,17 +9,21 @@ public class q2839 {
         int n = sc.nextInt();
         int ans = 0;
 
-        while(n >= 0) {
-            if(n % 5 == 0) {
+        while (n >= 0) {
+            if (n % 5 == 0) {
                 ans += (n / 5);
                 System.out.println(ans);
                 return;
             }
 
             n -= 3;
-            ans ++;
+            ans++;
         }
 
         System.out.println(-1);
     }
 }
+
+
+// 2가지
+// 1. 메모리제이션 (바텀업)  2. 재귀 (탑다운)
