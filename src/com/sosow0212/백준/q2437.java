@@ -16,7 +16,7 @@ public class q2437 {
 
         Arrays.sort(arr);
         // 1, 1, 2, 3, 6, 7, 30
-
+        // 1 -> 2 -> 3 ->
         int max = 0;
         for(int i=0; i<n; i++) {
             if(max + 1 >= arr[i]) {
