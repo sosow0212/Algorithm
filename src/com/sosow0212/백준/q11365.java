@@ -19,4 +19,4 @@ public class q11365 {
         ans.deleteCharAt(ans.lastIndexOf("\n"));
         System.out.println(ans);
     }
-}
+}//
