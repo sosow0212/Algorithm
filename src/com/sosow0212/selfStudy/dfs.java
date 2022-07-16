@@ -20,7 +20,7 @@ public class dfs {
                 dfs(nr,nc);
             }
         }
-        return false;
+        return false; // false로 해줘야 처리
     }
 
     public static void main(String[] args) {
