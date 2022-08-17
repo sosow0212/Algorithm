@@ -9,7 +9,7 @@ public class q2754 {
         double point = 0.0;
 
         switch (str) {
-            case "A+":
+            case "A+": //
                 point = 4.3;
                 break;
             case "A0":
