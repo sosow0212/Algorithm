@@ -7,22 +7,24 @@ public class q1464 {
         Scanner sc = new Scanner(System.in);
         String str = sc.next();
 
-        String s = str.substring(0,1);
+        String temp = str.substring(0, 1);
 
-        for(int i=1; i<str.length(); i++) {
-            if(s.charAt(i-1) < str.charAt(i)) {
-                s = str.charAt(i) + s;
+        // 사전 반대 순으로 먼저 나열
+        for (int i = 1; i < str.length(); i++) {
+            if (temp.charAt(i - 1) < str.charAt(i)) {
+                temp = str.charAt(i) + temp;
             } else {
-                s = s + str.charAt(i);
+                temp = temp + str.charAt(i);
             }
         }
 
-        String temp = "";
-        for(int i=s.length()-1; i>=0; i--) {
-            temp += s.charAt(i);
+        // 문자열 뒤집어서 사전 순으로 나열 (== 정답)
+        String ans = "";
+        for (int i = temp.length() - 1; i >= 0; i--) {
+            ans += temp.charAt(i);
         }
 
-        System.out.println(temp);
+        System.out.println(ans);
     }
 
 }
