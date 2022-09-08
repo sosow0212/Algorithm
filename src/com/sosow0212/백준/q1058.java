@@ -33,7 +33,7 @@ public class q1058 {
             int cnt = 0;
             for (int j = 0; j < N; j++) {
                 if (matrix[i][j] == 1 || matrix[i][j] == 2)
-                    cnt++;
+                    cnt++; //
             }
             ans = Math.max(ans, cnt);
         }
