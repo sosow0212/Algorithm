@@ -19,6 +19,7 @@ public class q1038 {
 
         for (long i = val - 1; i >= 0; i--) {
             long temp = number * 10 + i;
+            System.out.println(temp);
             comb(temp);
         }
     }
