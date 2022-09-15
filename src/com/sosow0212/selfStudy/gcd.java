@@ -12,7 +12,6 @@ public class gcd {
             if(m == 0) {
                 break;
             }
-
             if(n < m) {
                 int temp = n;
                 n = m;
