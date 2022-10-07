@@ -1,47 +1,46 @@
 package com.sosow0212.프로그래머스;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class 숫자짝꿍 {
-    static public String solution(String x, String y) {
-        String answer = "";
+    static public String solution(String X, String Y) {
+        StringBuilder answer = new StringBuilder();
 
-        boolean[] checkY = new boolean[y.length()];
+        int[] x = new int[10];
+        int[] y = new int[10];
+        List<Integer> list = new ArrayList<Integer>();
 
-        List<Integer> list = new ArrayList<>();
+        for (int i = 0; i < X.length(); i++) {
+            int temp = X.charAt(i) - '0';
+            x[temp]++;
+        }
+        for (int i = 0; i < Y.length(); i++) {
+            int temp = Y.charAt(i) - '0';
+            y[temp]++;
+        }
 
-        for(int i=0; i<x.length(); i++) {
-            for(int j=0; j<y.length(); j++) {
-                if(x.charAt(i) == y.charAt(j) && checkY[j] == false) {
-                    checkY[j] = true;
-                    list.add(Integer.parseInt(Character.toString(y.charAt(j))));
-                }
+        for (int i = 9; i >= 0; i--) {
+            if (x[i] != 0 && y[i] != 0) {
+                for (int j = 0; j < Math.min(x[i], y[i]); j++) list.add(i);
             }
         }
 
-        if(list.size() == 0) {
+        if (list.size() == 0) {
             return "-1";
-        }
-
-        if(list.get(0) == 0) {
+        } else if (list.get(0) == 0) {
             return "0";
         }
 
-        Collections.sort(list, Collections.reverseOrder());
-        System.out.println(list);
-
-        for(int i=0; i<list.size(); i++) {
-            answer += list.get(i);
+        for (int i : list) {
+            answer.append(i);
         }
 
-        return answer;
+        return answer.toString();
     }
 
     public static void main(String[] args) {
-        String x = "1234";
-        String y = "4321";
-        System.out.println(solution(x, y));
+        String x = "100";
+        String y = "123450";
+        System.out.println(solution(x, y)); // 10
     }
 }
