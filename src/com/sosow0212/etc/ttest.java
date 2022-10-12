@@ -3,21 +3,36 @@ package com.sosow0212.etc;
 import java.util.Scanner;
 
 public class ttest {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        while (true) {
-            double B = sc.nextDouble();
-            double N = sc.nextDouble();
 
-            if (B == 0 && N == 0) {
-                return;
-            }
+    static int answer;
+    static int[] nums;
+    static int target;
 
-            int A = 1;
-            while ((int) Math.abs((B - (int) Math.pow(A, N))) > (int) Math.abs(B - (int) Math.pow(A + 1, N))) {
-                A++;
+    static public int solution(int[] numbers, int tar) {
+        answer = 0;
+        nums = numbers;
+        target = tar;
+
+        dfs(0, 0);
+
+        return answer;
+    }
+
+    static public void dfs(int depth, int sum) {
+        if (depth == nums.length) {
+            if (target == sum) {
+                answer++;
             }
-            System.out.println(A);
+            return;
         }
+
+        dfs(depth + 1, sum + nums[depth]);
+        dfs(depth + 1, sum - nums[depth]);
+    }
+
+    public static void main(String[] args) {
+        int[] numbers = {4,1,2,1};
+        int target = 4;
+        System.out.println(solution(numbers, target));
     }
 }
