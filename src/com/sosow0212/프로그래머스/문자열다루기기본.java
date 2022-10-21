@@ -28,5 +28,6 @@ class 문자열다루기기본 {
         System.out.println(solution("123Aa"));
         System.out.println(solution("Aa"));
         System.out.println(solution("123A"));
+        System.out.println(solution("B123AB"));
     }
 }
