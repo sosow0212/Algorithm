@@ -5,7 +5,7 @@ import java.util.List;
 class woowa1 {
 
     public static void main(String[] args) {
-        System.out.println(solution(List.of(99, 102), List.of(211, 212)));
+        System.out.println(solution(List.of(97, 98), List.of(197, 198)));
     }
 
     public static int solution(List<Integer> pobi, List<Integer> crong) {
@@ -31,6 +31,7 @@ class woowa1 {
             return 0;
         }
 
+        // 추후에 상수로 변경
         return scoreOfPobi > scoreOfCrong ? 1 : 2;
     }
 
@@ -53,21 +54,33 @@ class woowa1 {
         return maxValueOfPages;
     }
 
-    public static int getMaxValueOfPage(int leftPage) {
-        String strOfLeftPage = String.valueOf(leftPage);
+    public static int getMaxValueOfPage(int page) {
+        String pageTypeOfString = String.valueOf(page);
 
-        int max = 0;
-        int sum = 0;
-        int mul = 1;
+        int sum = getSumOfPage(pageTypeOfString);
+        int mul = getMultipleOfPage(pageTypeOfString);
 
-        for (int i = 0; i < strOfLeftPage.length(); i++) {
-            int temp = strOfLeftPage.charAt(i) - '0';
-            sum += temp;
-            mul *= temp;
-        }
-
-        max = sum >= mul ? sum : mul;
+        int max = sum >= mul ? sum : mul;
         return max;
     }
 
+    public static int getSumOfPage(String pageTypeOfString) {
+        int sum = 0;
+
+        for (int i = 0; i < pageTypeOfString.length(); i++) {
+            int temp = pageTypeOfString.charAt(i) - '0';
+            sum += temp;
+        }
+        return sum;
+    }
+
+    public static int getMultipleOfPage(String pageTypeOfString) {
+        int multiple = 1;
+
+        for (int i = 0; i < pageTypeOfString.length(); i++) {
+            int temp = pageTypeOfString.charAt(i) - '0';
+            multiple *= temp;
+        }
+        return multiple;
+    }
 }
