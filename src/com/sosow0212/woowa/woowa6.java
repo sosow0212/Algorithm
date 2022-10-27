@@ -8,7 +8,6 @@ public class woowa6 {
                 List.of("jm@email.com", "제이엠"),
                 List.of("jason@email.com", "제이슨"),
                 List.of("woniee@email.com", "워니"),
-                List.of("woniee@email.com", "워니야"),
                 List.of("mj@email.com", "엠제이"),
                 List.of("nowm@email.com", "이제엠")
         );
@@ -22,18 +21,18 @@ public class woowa6 {
 
     public static List<String> solution(List<List<String>> forms) {
         List<String> answer = new ArrayList<>();
-        List<Set<String>> separatedNicknameList = new ArrayList<>();
+        List<Set<String>> partsOfNicknameList = new ArrayList<>();
         Map<String, Integer> nicknameAndCountMap = new HashMap<>();
 
         forms.stream()
-                .map(form -> nicknameSeparatedParts(form.get(FORM_EMAIL)))
+                .map(form -> partsOfNickname(form.get(FORM_NICKNAME)))
                 .forEach(parts -> {
-                    separatedNicknameList.add(parts);
+                    partsOfNicknameList.add(parts);
                     parts.forEach(part -> nicknameAndCountMap.put(part, nicknameAndCountMap.getOrDefault(part, 0) + 1));
                 });
 
-        for (int i = 0; i < separatedNicknameList.size(); i++) {
-            if (separatedNicknameList.get(i).stream().anyMatch(sep -> nicknameAndCountMap.get(sep) > 1)) {
+        for (int i = 0; i < partsOfNicknameList.size(); i++) {
+            if (partsOfNicknameList.get(i).stream().anyMatch(part -> nicknameAndCountMap.get(part) > 1)) {
                 answer.add(forms.get(i).get(FORM_EMAIL));
             }
         }
@@ -43,7 +42,7 @@ public class woowa6 {
         return answer;
     }
 
-    public static Set<String> nicknameSeparatedParts(String nickname) {
+    public static Set<String> partsOfNickname(String nickname) {
         Set<String> separatedNickname = new HashSet<>();
         for (int i = 0; i < nickname.length() - 1; i++) {
             separatedNickname.add(nickname.substring(i, i + 2));
