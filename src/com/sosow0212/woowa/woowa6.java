@@ -24,12 +24,14 @@ public class woowa6 {
         List<Set<String>> partsOfNicknameList = new ArrayList<>();
         Map<String, Integer> nicknameAndCountMap = new HashMap<>();
 
-        forms.stream()
-                .map(form -> partsOfNickname(form.get(FORM_NICKNAME)))
-                .forEach(parts -> {
-                    partsOfNicknameList.add(parts);
-                    parts.forEach(part -> nicknameAndCountMap.put(part, nicknameAndCountMap.getOrDefault(part, 0) + 1));
-                });
+        for(List<String> form : forms) {
+            Set<String> partsOfNickname = partsOfNickname(form.get(FORM_NICKNAME));
+            partsOfNicknameList.add(partsOfNickname);
+
+            for(String part : partsOfNickname) {
+                nicknameAndCountMap.put(part, nicknameAndCountMap.getOrDefault(part, 0) + 1);
+            }
+        }
 
         for (int i = 0; i < partsOfNicknameList.size(); i++) {
             if (partsOfNicknameList.get(i).stream().anyMatch(part -> nicknameAndCountMap.get(part) > 1)) {

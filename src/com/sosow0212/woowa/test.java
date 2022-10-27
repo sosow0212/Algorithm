@@ -3,7 +3,7 @@ package com.sosow0212.woowa;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class woowa7 {
+public class test {
 
     public static void main(String[] args) {
         String user = "mrko";
@@ -24,38 +24,38 @@ public class woowa7 {
     private static final Map<String, Integer> userToScore = new HashMap<>();
 
     public static List<String> solution(String user, List<List<String>> friends, List<String> visitors) {
-        List<String> answer;
+        List<String> answer = Collections.emptyList();
 
         Set<String> myFriendsSet = new HashSet<>();
 
         // 친구 셋 모두 넣기 (유저 기준)
-        for (List<String> friend : friends) {
-            if (isFriendsContainUser(friend, user)) {
+        for(List<String> friend : friends) {
+            if(isFriendsContainUser(friend, user)) {
                 myFriendsSet.addAll(friend);
             }
         }
 
 
-        for (List<String> friend : friends) {
-            if (myFriendsSet.contains(friend.get(0)) || myFriendsSet.contains(friend.get(1))) {
+        for(List<String> friend : friends) {
+            if(myFriendsSet.contains(friend.get(0)) || myFriendsSet.contains(friend.get(1))) {
                 updateRecommendScore(friend.get(0), 10);
                 updateRecommendScore(friend.get(1), 10);
             }
         }
 
         // 방문자는 점수 처리
-        for (String visitor : visitors) {
+        for(String visitor : visitors) {
             updateRecommendScore(visitor, 1);
         }
 
         // 자신과 친구면 제거
-        for (String friend : myFriendsSet) {
+        for(String friend : myFriendsSet) {
             userToScore.remove(friend);
         }
 
         // value == 0 이라면 제거
-        for (String key : userToScore.keySet()) {
-            if (userToScore.get(key) == 0) {
+        for(String key : userToScore.keySet()) {
+            if(userToScore.get(key) == 0) {
                 userToScore.remove(key);
             }
         }
@@ -68,7 +68,7 @@ public class woowa7 {
                 .limit(5)
                 .collect(Collectors.toList());
 
-        return answer;
+         return answer;
     }
 
     public static boolean isFriendsContainUser(List<String> friends, String user) {
