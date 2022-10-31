@@ -18,11 +18,11 @@ public class woowa6 {
 
     static final int FORM_EMAIL = 0;
     static final int FORM_NICKNAME = 1;
+    private static List<String> answer = new ArrayList<>();
+    private static List<Set<String>> partsOfNicknameList = new ArrayList<>();
+    private static Map<String, Integer> nicknameAndCountMap = new HashMap<>();
 
     public static List<String> solution(List<List<String>> forms) {
-        List<String> answer = new ArrayList<>();
-        List<Set<String>> partsOfNicknameList = new ArrayList<>();
-        Map<String, Integer> nicknameAndCountMap = new HashMap<>();
 
         for(List<String> form : forms) {
             Set<String> partsOfNickname = partsOfNickname(form.get(FORM_NICKNAME));
@@ -33,11 +33,14 @@ public class woowa6 {
             }
         }
 
-        for (int i = 0; i < partsOfNicknameList.size(); i++) {
-            if (partsOfNicknameList.get(i).stream().anyMatch(part -> nicknameAndCountMap.get(part) > 1)) {
-                answer.add(forms.get(i).get(FORM_EMAIL));
-            }
-        }
+       for(int i=0; i<partsOfNicknameList.size(); i++) {
+           Set<String> parts = partsOfNicknameList.get(i);
+           for(String part : parts) {
+               if(nicknameAndCountMap.get(part) > 1) {
+                   answer.add(forms.get(i).get(FORM_EMAIL));
+               }
+           }
+       }
 
         Collections.sort(answer);
 
