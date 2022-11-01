@@ -1,9 +1,8 @@
-//package onboarding;
 //
 //import java.util.*;
 //import java.util.stream.Collectors;
 //
-//public class Problem7 {
+//public class sol7 {
 //
 //    // 추후에 모든 문제에 private 추가해야함
 //    private static final Map<String, Integer> userAndScoreMap = new HashMap<>();
