@@ -7,23 +7,21 @@ import java.util.Vector;
 
 public class test {
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt();
-        int m = sc.nextInt();
-        List<Integer>[] graph = new ArrayList[n + 1];
+        System.out.println(getPriceOfParking(334, new int[]{180, 5000, 10, 600}));
+    }
 
-        for (int i = 0; i < n + 1; i++) { // i < m이 아니야 임마
-            int a = sc.nextInt();
-            int b = sc.nextInt();
-            graph[a].add(b);
-            graph[b].add(a);
+    public static int getPriceOfParking(int parkingTime, int[] fees) {
+        int price = 0;
+        if (parkingTime <= fees[0]) {
+            return fees[1];
+        } else {
+            price += fees[1];
+            System.out.println("price " + price);
+            System.out.println(parkingTime -= fees[0]
+            );
+            parkingTime -= fees[0];
+            price += ((parkingTime / fees[2]) * fees[3]);
         }
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < graph[i].size(); j++) {
-                System.out.print(graph[i].get(j));
-            }
-            System.out.println();
-        }
-
+        return price;
     }
 }
