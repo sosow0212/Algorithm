@@ -17,5 +17,7 @@ public class 배열뒤집기 {
 
     public static void main(String[] args) {
         solution(new int[]{1, 0, 1, 1, 1, 3, 5}); // 5,3,1,1,1,0,1
+        String str = "ds";
+        str.length();
     }
 }
