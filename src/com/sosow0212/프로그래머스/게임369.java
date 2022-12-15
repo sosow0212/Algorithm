@@ -5,11 +5,11 @@ import java.util.Arrays;
 public class 게임369 {
     static public int solution(int order) {
         return (int) Arrays.stream(String.valueOf(order).split(""))
-                .filter(i -> Integer.valueOf(i) % 3 == 0)
+                .filter("369"::contains)
                 .count();
     }
 
     public static void main(String[] args) {
-        System.out.println(solution(29423)); // 2
+        System.out.println(solution(356)); // 2
     }
 }
