@@ -17,8 +17,10 @@ class 타겟넘버2 {
     }
 
     public void dfs(int index, int sum) {
-        if(index == numbers.length) {
-            if(sum == target) answer ++;
+        if (index == numbers.length) {
+            if (sum == target) {
+                answer++;
+            }
             return;
         }
 
