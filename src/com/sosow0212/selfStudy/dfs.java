@@ -12,6 +12,7 @@ public class dfs {
             return false;
         }
 
+
         if(visited[r][c] == false) {
             visited[r][c] = true;
             for(int i=0; i<4; i++) {
