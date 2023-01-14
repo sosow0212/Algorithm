@@ -19,7 +19,6 @@ public class 같은숫자는싫어 {
                 temp = arr[i];
             }
         }
-
         answer = new int[q.size()];
         int i = 0;
         while(!q.isEmpty()) {
