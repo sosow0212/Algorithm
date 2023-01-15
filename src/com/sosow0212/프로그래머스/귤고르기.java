@@ -40,4 +40,5 @@ public class 귤고르기 {
         System.out.println(solution(4, new int[]{1, 3, 2, 5, 4, 5, 2, 3})); // 2
         System.out.println(solution(2, new int[]{1, 1, 1, 1, 2, 2, 2, 3})); // 1
     }
+
 }
