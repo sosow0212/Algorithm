@@ -7,7 +7,7 @@ public class 택배배달과수거하기 {
     public static long solution(int cap, int n, int[] deliveries, int[] pickups) {
         long answer = 0;
 
-        // 1. 데이터 세팅 (먼 곳부터 탐색해야하므로 역순 저장)
+        // 1. 데이터 세팅 (먼 곳부터 탐색해야하므로 역순으로 배열 저장)
         int sizeOfLastDeliveries = 0;
         int sizeOfLastPickups = 0;
 
