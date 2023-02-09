@@ -1,24 +1,19 @@
 package com.sosow0212.study;
 
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Scanner;
 
-public class Self {
+public class Graph2606 {
     private static LinkedList<Integer>[] graph;
     private static boolean[] visited;
-    private static int n;
-    private static int link;
-    private static int answer = -1;
+    private static int answer = 0;
+    private static int n, m;
 
     public static void main(String[] args) {
-        initData();
-        System.out.println(answer);
-    }
-
-    private static void initData() {
         Scanner sc = new Scanner(System.in);
         n = sc.nextInt();
-        link = sc.nextInt();
+        m = sc.nextInt();
         graph = new LinkedList[n + 1];
         visited = new boolean[n + 1];
 
@@ -26,7 +21,7 @@ public class Self {
             graph[i] = new LinkedList<>();
         }
 
-        for (int i = 0; i < link; i++) {
+        for (int i = 0; i < m; i++) {
             int node1 = sc.nextInt();
             int node2 = sc.nextInt();
             graph[node1].add(node2);
@@ -34,19 +29,22 @@ public class Self {
         }
 
         dfs(1);
-        for(boolean b : visited) {
-            System.out.println(b);
+        System.out.println(answer);
+
+        for (boolean b : visited) {
             if(b) {
                 answer ++;
             }
         }
+
+        System.out.println(answer - 1); // 1에게 걸린 바이러스이므로 1은 제외시켜준다.
     }
 
     private static void dfs(int index) {
         visited[index] = true;
 
-        for(int node : graph[index]) {
-            if(!visited[node]) {
+        for (int node : graph[index]) {
+            if (!visited[node]) {
                 dfs(node);
             }
         }
