@@ -22,8 +22,9 @@ public class woowa4 {
     }
 
     public static char getFrogWord(char alphabet) {
-        if (!Character.isAlphabetic(alphabet))
+        if (!Character.isAlphabetic(alphabet)) {
             return alphabet;
+        }
         if (Character.isUpperCase(alphabet)) {
             return (char) ('A' + ('Z' - alphabet));
         } else {

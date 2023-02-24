@@ -1,6 +1,12 @@
 package com.sosow0212.woowa;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 public class woowa6 {
     public static void main(String[] args) {
@@ -24,23 +30,23 @@ public class woowa6 {
 
     public static List<String> solution(List<List<String>> forms) {
 
-        for(List<String> form : forms) {
+        for (List<String> form : forms) {
             Set<String> partsOfNickname = partsOfNickname(form.get(FORM_NICKNAME));
             partsOfNicknameList.add(partsOfNickname);
 
-            for(String part : partsOfNickname) {
+            for (String part : partsOfNickname) {
                 nicknameAndCountMap.put(part, nicknameAndCountMap.getOrDefault(part, 0) + 1);
             }
         }
 
-       for(int i=0; i<partsOfNicknameList.size(); i++) {
-           Set<String> parts = partsOfNicknameList.get(i);
-           for(String part : parts) {
-               if(nicknameAndCountMap.get(part) > 1) {
-                   answer.add(forms.get(i).get(FORM_EMAIL));
-               }
-           }
-       }
+        for (int i = 0; i < partsOfNicknameList.size(); i++) {
+            Set<String> parts = partsOfNicknameList.get(i);
+            for (String part : parts) {
+                if (nicknameAndCountMap.get(part) > 1) {
+                    answer.add(forms.get(i).get(FORM_EMAIL));
+                }
+            }
+        }
 
         Collections.sort(answer);
 

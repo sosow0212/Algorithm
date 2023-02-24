@@ -1,6 +1,11 @@
 package com.sosow0212.woowa;
 
-import java.util.*;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class woowa7 {
@@ -34,7 +39,6 @@ public class woowa7 {
                 myFriendsSet.addAll(friend);
             }
         }
-
 
         for (List<String> friend : friends) {
             if (myFriendsSet.contains(friend.get(0)) || myFriendsSet.contains(friend.get(1))) {

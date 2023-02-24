@@ -1,6 +1,7 @@
 package com.sosow0212.woowa;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class woowa2 {
 
