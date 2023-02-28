@@ -1,6 +1,6 @@
 package com.sosow0212.프로그래머스;
 
-public class 타겟넘버3 {
+public class 타겟넘버4 {
     int[] numbers;
     int target;
     int answer;
@@ -20,14 +20,15 @@ public class 타겟넘버3 {
             }
             return;
         }
+
         dfs(depth + 1, sum + numbers[depth]);
         dfs(depth + 1, sum - numbers[depth]);
     }
 
     public static void main(String[] args) {
-        타겟넘버3 sol = new 타겟넘버3();
+        타겟넘버4 sol = new 타겟넘버4();
         int[] numbers = {1, 1, 1, 1, 1};
-        int target = 3;
+        int target = 3; // 5
         System.out.println(sol.solution(numbers, target));
     }
 }
