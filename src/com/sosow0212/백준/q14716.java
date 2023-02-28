@@ -13,7 +13,7 @@ public class q14716 {
     public static void main(String[] args) {
         initData();
         getAnswer();
-    }
+    }//
 
     private static void initData() {
         Scanner sc = new Scanner(System.in);
