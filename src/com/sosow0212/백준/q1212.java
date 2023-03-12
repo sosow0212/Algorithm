@@ -1,33 +1,31 @@
 package com.sosow0212.백준;
 
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 public class q1212 {
 
-    private static final int OCTA_PARSER = 8;
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
+        String s = br.readLine();
+        StringBuilder sb = new StringBuilder();
+        String[] b = {"000", "001", "010", "011", "100", "101", "110", "111"};
 
-        int answer = 0;
-        String str = sc.next();
-        StringBuilder sb = new StringBuilder(str).reverse();
+        for (int i = 0; i < s.length(); i++) {
+            int a = s.charAt(i) - '0';
 
-        int octa = 1;
-        for (int i = 1; i <= sb.length(); i++) {
-
-            int temp = sb.charAt(i - 1) - '0';
-
-            if (i == 1) {
-                octa = 1;
-                answer += temp * octa;
-                continue;
-            }
-
-            octa = octa * OCTA_PARSER;
-            answer += temp * octa;
+            sb.append(b[a]);
         }
 
-        System.out.println(Integer.toBinaryString(answer));
+        if (s.equals("0")) {
+            System.out.println(s);
+        } else {
+            while (sb.charAt(0) == '0') {
+                sb = new StringBuilder(sb.substring(1));
+            }
+            System.out.println(sb);
+        }
     }
 }
