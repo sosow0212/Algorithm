@@ -14,6 +14,5 @@ public class q11034 {
         int B = arr[2] - arr[1];
 
         System.out.println(Math.max(A,B) - 1);
-
     }
 }

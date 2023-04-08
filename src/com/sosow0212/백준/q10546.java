@@ -5,6 +5,8 @@ import java.util.Scanner;
 
 public class q10546 {
     public static void main(String[] args) {
+
+        // 다른 방법도 찾기
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
         String ans = "";
