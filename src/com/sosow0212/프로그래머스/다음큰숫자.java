@@ -2,7 +2,7 @@ package com.sosow0212.프로그래머스;
 
 public class 다음큰숫자 {
     static public int solution(int n) {
-        int answer = 0;
+        int answer;
 
         String binaryN = Integer.toBinaryString(n);
         int countOfN = countOfOne(binaryN);
