@@ -1,8 +1,11 @@
 package com.sosow0212.백준;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
+import java.util.StringTokenizer;
 
 public class q1967 {
 
@@ -10,7 +13,7 @@ public class q1967 {
     private static boolean[] visited;
     private static int answer, n;
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         initData();
         getAnswer();
     }
@@ -35,9 +38,9 @@ public class q1967 {
         answer = Math.max(answer, sum);
     }
 
-    private static void initData() {
-        Scanner sc = new Scanner(System.in);
-        n = sc.nextInt();
+    private static void initData() throws IOException {
+        BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+        n = Integer.parseInt(in.readLine());
         list = new List[n + 1];
         visited = new boolean[n + 1];
 
@@ -46,9 +49,10 @@ public class q1967 {
         }
 
         for (int i = 0; i < n - 1; i++) {
-            int parent = sc.nextInt();
-            int child = sc.nextInt();
-            int val = sc.nextInt();
+            StringTokenizer st = new StringTokenizer(in.readLine());
+            int parent = Integer.parseInt(st.nextToken());
+            int child = Integer.parseInt(st.nextToken());
+            int val = Integer.parseInt(st.nextToken());
 
             list[parent].add(new Node(child, val));
             list[child].add(new Node(parent, val));
