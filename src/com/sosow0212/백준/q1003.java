@@ -1,3 +1,5 @@
+package com.sosow0212.백준;
+
 import java.util.Scanner;
 
 public class q1003 {
