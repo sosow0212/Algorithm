@@ -9,7 +9,7 @@ public class q1003 {
 
     static void fibonacci(int n) {
         if (n == 0) {
-            num0[k]++;
+            num0[k]++; //
             return;
         } else if (n == 1) {
             num1[k]++;
