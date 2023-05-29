@@ -11,7 +11,8 @@ public class 두큐합같게만들기 {
         long sum1 = 0;
         long sum2 = 0;
 
-        for (int q : queue1) {
+        for (int q : queue1) 
+        {
             q1.offer(q);
             sum1 += q;
         }
@@ -43,11 +44,5 @@ public class 두큐합같게만들기 {
         }
 
         return count;
-    }
-
-    public static void main(String[] args) {
-        int[] queue1 = {3, 2, 7, 2};
-        int[] queue2 = {4, 6, 5, 1};
-        System.out.println(solution(queue1, queue2)); // 2
     }
 }
