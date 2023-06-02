@@ -15,6 +15,7 @@ public class Self {
         System.out.println(answer);
     }
 
+    // 추후에 initData 어떻게 처리할지 고민하기
     private static void initData() {
         Scanner sc = new Scanner(System.in);
         n = sc.nextInt();
