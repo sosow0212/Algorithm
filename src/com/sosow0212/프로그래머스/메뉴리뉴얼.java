@@ -1,64 +1,64 @@
 package com.sosow0212.프로그래머스;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class 메뉴리뉴얼 {
 
-    static HashMap<String, Integer> map;
-    static HashMap<Integer, String> answer;
-    static boolean[] visited;
+    List<String> answerList;
+    Map<String, Integer> hashMap;
 
     public String[] solution(String[] orders, int[] course) {
-        map = new HashMap<>();
-        answer = new HashMap<>();
+        answerList = new ArrayList<>();
+        hashMap = new HashMap<>();
 
-        // 1. 백트래킹
-        for (String order : orders) {
-            initPermutation(order);
+        // 1. 각 Order 정렬
+        for (int i = 0; i < orders.length; i++) {
+            char[] arr = orders[i].toCharArray();
+            Arrays.sort(arr);
+            orders[i] = String.valueOf(arr);
         }
 
-        System.out.println(map);
+        // 2. 각 order를 기준으로 courseLength 만큼의 조합 만들기
+        for (int courseLength : course) {
+            for (String order : orders)
+                combination("", order, courseLength);
 
-        // 2. 정답 찾기
-        for (int courseCount : course) {
-            for (String key : map.keySet()) {
-                if (key.length() == courseCount) {
-                    Integer sizeOfPickMenus = map.get(key);
-                    int beforeSize = answer.getOrDefault(key, "").length();
+            // 3. 가장 많은 조합 answer에 저장
+            if (!hashMap.isEmpty()) {
+                List<Integer> countList = new ArrayList<>(hashMap.values());
+                int max = Collections.max(countList);
 
-                    if (sizeOfPickMenus >= beforeSize) {
-                        answer.put(courseCount, key);
-                    }
-                }
+                if (max > 1)
+                    for (String key : hashMap.keySet())
+                        if (hashMap.get(key) == max)
+                            answerList.add(key);
+                hashMap.clear();
             }
         }
 
-        System.out.println(answer);
+        Collections.sort(answerList);
+        String[] answer = new String[answerList.size()];
+        for (int i = 0; i < answer.length; i++)
+            answer[i] = answerList.get(i);
 
-
-        return null;
+        return answer;
     }
 
-    private void initPermutation(final String key) {
-        visited = new boolean[key.length()];
-        doPermutation(0, "", key);
-    }
-
-    private void doPermutation(final int index, final String combination, final String key) {
-        if (index != 0) {
-            List<String> collect = Arrays.stream(combination.split("")).sorted().toList();
-            map.put(combination, map.getOrDefault(collect.toString(), 0) + 1);
+    public void combination(String order, String others, int count) {
+        // 탈출 조건 : count == 0
+        if (count == 0) {
+            hashMap.put(order, hashMap.getOrDefault(order, 0) + 1);
+            return;
         }
 
-        for (int i = 0; i < key.length(); i++) {
-            if (!visited[i]) {
-                visited[i] = true;
-                doPermutation(index + 1, combination + key.charAt(i), key);
-                visited[i] = false;
-            }
-        }
+        // 0부터 length까지 조합
+        for (int i = 0; i < others.length(); i++)
+            combination(order + others.charAt(i), others.substring(i + 1), count - 1);
     }
 
     public static void main(String[] args) {
@@ -74,6 +74,6 @@ public class 메뉴리뉴얼 {
         int[] course2 = {2, 3, 5};
 
         // "ACD", "AD", "ADE", "CD", "XYZ"
-//        System.out.println(Arrays.toString(sol.solution(orders2, course2)));
+        System.out.println(Arrays.toString(sol.solution(orders2, course2)));
     }
 }
