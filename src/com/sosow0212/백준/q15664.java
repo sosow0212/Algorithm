@@ -1,66 +1,64 @@
 package com.sosow0212.백준;
 
 import java.util.Arrays;
-import java.util.HashSet;
 import java.util.Scanner;
-import java.util.Set;
 
 public class q15664 {
 
     private static int n, m;
-    private static int[] givenArr;
-    private static int[] answerArr;
+    private static int[] map;
+    private static int[] arr;
     private static boolean[] visited;
-    private static Set<String> answer = new HashSet<>();
+
+    private static final StringBuilder sb = new StringBuilder();
 
     public static void main(String[] args) {
-        initData();
-        getAnswer();
-    }
 
-    private static void initData() {
         Scanner sc = new Scanner(System.in);
 
         n = sc.nextInt();
         m = sc.nextInt();
 
-        givenArr = new int[n];
-        answerArr = new int[m];
-        visited = new boolean[n];
+        map = new int[n];
+        arr = new int[m];
+        visited = new boolean[n + 1];
 
         for (int i = 0; i < n; i++) {
-            givenArr[i] = sc.nextInt();
+            map[i] = sc.nextInt();
         }
 
-        Arrays.sort(givenArr);
+        Arrays.sort(map);
+
+        StringBuilder sb = new StringBuilder();
+
+        dfs(0, 0);
+
+        System.out.print(sb);
+
     }
 
-    private static void getAnswer() {
-        permutation(0);
-        System.out.println(answer);
-    }
+    private static void dfs(int index, int depth) {
+        if (depth == m) {
+            for (int i = 0; i < m; i++) {
+                sb.append(arr[i] + " ");
+            }
+            sb.append("\n");
+        } else {
+            int b = 0;
+            for (int i = index; i < n; i++) {
+                if (!visited[i]) {
+                    if (b == map[i]) {
+                        continue;
+                    }
 
-    private static void permutation(int index) {
-        if (index == m) {
-            StringBuilder sb = new StringBuilder();
-            for (int i = 0; i < answerArr.length - 1; i++) {
-                if(answerArr[i] <= answerArr[i+1]) {
-                    sb.append(String.valueOf(i) + " ");
+                    visited[i] = true;
+                    arr[depth] = map[i];
+                    dfs(i + 1, depth + 1);
+                    visited[i] = false;
+
+                    b = map[i];
+
                 }
-            }
-
-            if(sb.toString().trim().split(" ").length == m) {
-                answer.add(sb.toString());
-            }
-            return;
-        }
-
-        for (int i = 0; i < givenArr.length - 1; i++) {
-            if (!visited[i]) {
-                answerArr[index] = givenArr[i];
-                visited[i] = true;
-                permutation(index + 1);
-                visited[i] = false;
             }
         }
     }
