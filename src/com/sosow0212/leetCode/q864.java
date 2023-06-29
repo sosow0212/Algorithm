@@ -1,5 +1,6 @@
 package com.sosow0212.leetCode;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
@@ -39,35 +40,62 @@ public class q864 {
                     continue;
                 }
 
-                if (map[nr][nc] == '.') {
-                    dp[nr][nc] = Math.min(dp[nr][nc], dp[now[0]][now[1]] + 1);
+                if (map[nr][nc] == '.' || map[nr][nc] == '@') {
+                    dp[nr][nc] = dp[now[0]][now[1]] + 1;
                     visited[nr][nc] = true;
                     q.add(new int[]{nr, nc});
                 }
 
                 if (map[nr][nc] >= 'a' && map[nr][nc] <= 'f') {
-                    dp[nr][nc] = Math.min(dp[nr][nc], dp[now[0]][now[1]] + 1);
+                    dp[nr][nc] = dp[now[0]][now[1]] + 1;
                     visited[nr][nc] = true;
 
                     if (keyMap.get(map[nr][nc]) == 0) {
+                        // 처음 방문하는 키인 경우
+
                         keyCount++;
                         keyMap.put(map[nr][nc], 1);
 
-//                        // 추가
-//                        visited = new boolean[n][m];
-                    }
+                        // 추가 (열쇠 획득 후 방문 지점과 dp맵 초기화)
+                        int temp = dp[nr][nc];
+                        visited = new boolean[n][m];
+                        visited[nr][nc] = true;
 
-                    if (keyCount == keyMap.size()) {
-                        answer = dp[nr][nc];
-                        System.out.println("answer : " + answer);
-                        return;
+                        for (int[] value : dp) {
+                            Arrays.fill(value, Integer.MAX_VALUE);
+                        }
+                        dp[nr][nc] = temp;
+                        q.clear();
+                        q.add(new int[]{nr, nc});
+
+                        //
+                        System.out.println(nr + " " + nc);
+                        for (int[] d : dp) {
+                            for (int j : d) {
+                                if (j == Integer.MAX_VALUE) {
+                                    j = -1;
+                                }
+                                System.out.print(j + "  ");
+                            }
+                            System.out.println();
+                        }
+                        System.out.println();
+                        //
+
+                        if (keyCount == keyMap.size()) {
+                            answer = dp[nr][nc];
+                            System.out.println("answer : " + answer);
+                            return;
+                        }
+
+                        break;
                     }
 
                     q.add(new int[]{nr, nc});
                 }
 
                 if (map[nr][nc] >= 'A' && map[nr][nc] <= 'F' && keyMap.get(Character.toLowerCase(map[nr][nc])) == 1) {
-                    dp[nr][nc] = Math.min(dp[nr][nc], dp[now[0]][now[1]] + 1);
+                    dp[nr][nc] = dp[now[0]][now[1]] + 1;
                     visited[nr][nc] = true;
                     q.add(new int[]{nr, nc});
                 }
@@ -125,6 +153,20 @@ public class q864 {
                 ".###A",
                 "b.BCc"};
 
-        System.out.println(sol.shortestPathAllKeys(grid4));
+        // 19
+        String[] grid5 = {
+                "..#....##.",
+                "....d.#.D#",
+                "#...#.c...",
+                "..##.#..a.",
+                "...#....##",
+                "#....b....",
+                ".#..#.....",
+                "..........",
+                ".#..##..A.",
+                ".B..C.#..@"
+        };
+
+        System.out.println(sol.shortestPathAllKeys(grid5));
     }
 }
