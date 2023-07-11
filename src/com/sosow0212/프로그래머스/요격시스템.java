@@ -11,10 +11,11 @@ public class 요격시스템 {
 
         for (int i = 0; i < targets.length; i++) {
             if (targets[i][0] >= before) {
-                before = targets[i][1];
                 answer++;
+                before = targets[i][1];
             }
         }
+
         return answer;
     }
 
