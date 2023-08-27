@@ -31,7 +31,6 @@ public class q11724 {
         for (int i = 0; i < m; i++) {
             int node1 = sc.nextInt();
             int node2 = sc.nextInt();
-
             list[node1].add(node2);
             list[node2].add(node1);
         }
