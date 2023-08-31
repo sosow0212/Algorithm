@@ -5,18 +5,18 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
-public class q2 {
+public class q2_2 {
 
-    private int answer;
-    private List<Integer>[] map;
-    private boolean[] visited;
+    static int answer;
+    static List<Integer>[] map;
+    static boolean[] visited;
 
     public int solution(int[][] relationships, int target, int limit) {
         answer = 0;
-        map = new ArrayList[relationships.length + 1];
-        visited = new boolean[relationships.length + 1];
+        map = new ArrayList[101];
+        visited = new boolean[101];
 
-        for (int i = 1; i <= 100; i++) {
+        for (int i = 1; i < 101; i++) {
             map[i] = new ArrayList<>();
         }
 
@@ -32,37 +32,36 @@ public class q2 {
         return answer;
     }
 
-    private void bfs(int target, int limit) {
-        Queue<int[]> queue = new LinkedList<>();
+    private static void bfs(int target, int limit) {
+        Queue<int[]> q = new LinkedList<>();
 
-        queue.offer(new int[]{target, 0});
+        q.offer(new int[]{target, 0});
         visited[target] = true;
 
-        while (!queue.isEmpty()) {
-            int[] now = queue.poll();
+        while (!q.isEmpty()) {
+            int[] now = q.poll();
+            int person = now[0];
+            int link = now[1];
 
-            int p = now[0];
-            int value = now[1];
-
-            if (value >= 2 && value <= limit) {
+            if (link >= 2 && link <= limit) {
                 answer += 11;
-            } else if (value == 1) {
+            } else if (link == 1) {
                 answer += 5;
-            } else if (value > limit) {
+            } else if (link > limit) {
                 continue;
             }
 
-            for (int friend : map[p]) {
+            for (int friend : map[person]) {
                 if (!visited[friend]) {
                     visited[friend] = true;
-                    queue.offer(new int[]{friend, value + 1});
+                    q.offer(new int[]{friend, link + 1});
                 }
             }
         }
     }
 
     public static void main(String[] args) {
-        q2 sol = new q2();
+        q2_2 sol = new q2_2();
 
         int[][] relationships = {{1, 2}, {2, 3}, {2, 6}, {3, 4}, {4, 5}};
         int target = 2;
