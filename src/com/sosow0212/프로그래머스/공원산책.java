@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Queue;
 
 public class 공원산책 {
@@ -17,18 +18,17 @@ public class 공원산책 {
 
     public int[] solution(String[] park, String[] routes) {
         initData(park, routes);
-        getAnswer(routes);
+        getAnswer();
         return answer;
     }
 
-    private void getAnswer(final String[] routes) {
+    private void getAnswer() {
         int[] now = startPos.clone();
         answer = now.clone();
 
         while (!nextPos.isEmpty()) {
             now = answer.clone();
-//            System.out.println("now : " + Arrays.toString(now));
-            String[] nextPosStr = nextPos.poll().split(" ");
+            String[] nextPosStr = Objects.requireNonNull(nextPos.poll()).split(" ");
 
             String nextDir = nextPosStr[0];
             int count = Integer.parseInt(nextPosStr[1]);
@@ -45,7 +45,7 @@ public class 공원산책 {
                 }
             }
 
-            if(!failure) {
+            if (!failure) {
                 answer = now.clone();
             }
 
@@ -78,9 +78,7 @@ public class 공원산책 {
         pos.put("N", new int[]{-1, 0});
         pos.put("S", new int[]{1, 0});
 
-        for (String route : routes) {
-            nextPos.add(route);
-        }
+        nextPos.addAll(Arrays.asList(routes));
     }
 
     public static void main(String[] args) {
