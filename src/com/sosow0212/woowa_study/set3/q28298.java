@@ -22,8 +22,10 @@ public class q28298 {
             map[i] = br.readLine().toCharArray();
         }
 
+        // 몇 개의 영역으로 나뉜지 변수
         int boundaryPoint = n * m / (k * k);
 
+        // 영역을 탐색 (2 * 2)
         for (int i = 0; i < k; i++) {
             for (int j = 0; j < k; j++) {
 
@@ -31,6 +33,8 @@ public class q28298 {
                     alphabets[alphabet] = 0;
                 }
 
+                // 모든 영역의 알파벳 수 중 가장 많은 걸 확인
+                // 각 영역 별로 탐색  // y < 3, w < 5 --> [3, 2, 1, 0, 0, ... 0]
                 for (int v = 0; v < n - k + 1; v += k) {
                     for (int w = 0; w < m - k + 1; w += k) {
                         char t = map[v + i][w + j];
