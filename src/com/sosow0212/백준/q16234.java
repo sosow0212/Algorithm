@@ -1,33 +1,39 @@
 package com.sosow0212.백준;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedHashSet;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
 import java.util.Scanner;
+import java.util.Set;
 
 public class q16234 {
 
-    private static int n;
-    private static int l, r;
-    private static int[][] map;
-    private static boolean[][] visited;
-    private static int[][] pos = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
-    private static int answer;
-    private static boolean checkOfVisited;
-    private static int sum, total;
+    static int n;
+    static int l;
+    static int r;
+    static int[][] map;
+    static boolean[][] visited;
+    static int[][] pos = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
+    static int answer;
+    static Set<int[]> set;
+    static int mod;
+    static boolean[][] visitedNext;
 
     public static void main(String[] args) {
-        initData();
-        getAnswer();
-    }
-
-    private static void initData() {
         Scanner sc = new Scanner(System.in);
 
         n = sc.nextInt();
         l = sc.nextInt();
         r = sc.nextInt();
+        answer = 0;
+        set = new LinkedHashSet<>();
+        mod = 0;
 
         map = new int[n][n];
         visited = new boolean[n][n];
-        checkOfVisited = true;
 
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
@@ -35,98 +41,101 @@ public class q16234 {
             }
         }
 
-        answer = 0;
-    }
-
-    private static void getAnswer() {
-
         while (true) {
-            checkOfVisited = false;
-            visited = new boolean[n][n];
-            sum = 0;
-            total = 0;
+            // 1. 국경 열기
+            if (!isOpen()) {
+                break;
+            }
 
-            // 1. 탐색해서 맵에 true ,false 체크해주기
-            for (int i = 0; i < n; i++) {
-                for (int j = 0; j < n; j++) {
-                    dfs(i, j);
+            List<int[]> list = new ArrayList<>(set);
+            visitedNext = new boolean[n][n];
+
+            for (int i = 0; i < list.size(); i++) {
+                int[] position = list.get(i);
+
+                if (visited[position[0]][position[1]] && !visitedNext[position[0]][position[1]]) {
+                    visitedNext[position[0]][position[1]] = true;
+                    bfs(position[0], position[1]);
+                    answer++;
                 }
             }
 
-            // 2. 평균 내서 값 바꾸기
-            boolean[][] union = new boolean[n][n];
-            for (int i = 0; i < n; i++) {
-                for (int j = 0; j < n; j++) {
-                    if (visited[i][j]) {
-                        checkOfVisited = true;
+            for (int[] ints : map) {
+                System.out.println(Arrays.toString(ints));
+            }
+            for (boolean[] ints : visited) {
+                System.out.println(Arrays.toString(ints));
+            }
+            System.out.println();
+            System.out.println();
+        }
 
-                        total++;
-                        dfsForCalculation(i, j);
+        System.out.println(answer);
+    }
 
+    static boolean isOpen() {
+        visited = new boolean[n][n];
+        mod = 0;
+
+        boolean isOpen = false;
+
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                for (int k = 0; k < pos.length; k++) {
+                    int nr = i + pos[k][0];
+                    int nc = j + pos[k][1];
+
+                    if (!(nr >= 0 && nr < n && nc >= 0 && nc < n)) {
+                        continue;
+                    }
+
+                    int abs = Math.abs(map[nr][nc] - map[i][j]);
+
+                    if (abs >= l && abs <= r) {
+                        visited[i][j] = true;
+                        visited[nr][nc] = true;
+                        set.add(new int[]{nr, nc});
+                        mod += map[i][j];
+                        isOpen = true;
                     }
                 }
             }
+        }
 
-            // 2-1. 바뀐게 없다면 중지
-            if (!checkOfVisited) {
-                System.out.println(answer);
-                return;
-            }
+        return isOpen;
+    }
 
-            // 2-2. 바뀐게 있다면 정답 +1 해주고, 계산
-            answer++;
+    static void bfs(int row, int col) {
+        Queue<int[]> q = new LinkedList<>();
+        Set<int[]> set = new LinkedHashSet<>();
 
+        q.add(new int[]{row, col});
+        set.add(new int[]{row, col});
 
-            // test
-            for(int i=0; i<n; i++) {
-                for(int j=0; j<n; j++) {
-                    System.out.print(map[i][j] + " ");
+        int sum = map[row][col];
+
+        while (!q.isEmpty()) {
+            int[] now = q.poll();
+
+            for (int i = 0; i < pos.length; i++) {
+                int nr = now[0] + pos[i][0];
+                int nc = now[1] + pos[i][1];
+
+                if (nr >= 0 && nr < n && nc >= 0 && nc < n && visited[nr][nc] && !visitedNext[nr][nc]) {
+                    sum += map[nr][nc];
+                    q.add(new int[]{nr, nc});
+                    set.add(new int[]{nr, nc});
+                    visitedNext[nr][nc] = true;
                 }
-                System.out.println();
-            }
-            System.out.println();
-        }
-    }
-
-    private static void dfsForCalculation(int row, int col) {
-        visited[row][col] = false;
-        sum += map[row][col];
-
-        for(int i=0; i<pos.length; i++) {
-            int nr = row + pos[i][0];
-            int nc = col + pos[i][1];
-
-            if(!isPermitRange(nr, nc) && visited[nr][nc]) {
-                dfsForCalculation(nr, nc);
             }
         }
 
-    }
+        System.out.println(sum + " " + set.size());
+        int mod = (int) Math.floor(sum / set.size());
+        System.out.println("mod = " + mod);
 
-    private static void dfs(int row, int col) {
-        for (int i = 0; i < pos.length; i++) {
-            int nr = row + pos[i][0];
-            int nc = col + pos[i][1];
-
-            if (!isPermitRange(nr, nc)) {
-                continue;
-            }
-
-            int abs = Math.abs(map[row][col] - map[nr][nc]);
-            if (!isPermitAbs(abs)) {
-                continue;
-            }
-
-            visited[row][col] = true;
-            visited[nr][nc] = true;
+        for (int[] pos : set) {
+            map[pos[0]][pos[1]] = mod;
         }
-    }
-
-    private static boolean isPermitAbs(int abs) {
-        return abs >= l && abs <= r;
-    }
-
-    private static boolean isPermitRange(int nr, int nc) {
-        return nr >= 0 && nr < n && nc >= 0 && nc < n;
     }
 }
