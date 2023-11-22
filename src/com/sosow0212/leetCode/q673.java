@@ -4,6 +4,8 @@ import java.util.Arrays;
 
 public class q673 {
 
+    // retry 1129
+
     public int findNumberOfLIS(int[] nums) {
         int[] dp = new int[nums.length];
         int answer = 0;
