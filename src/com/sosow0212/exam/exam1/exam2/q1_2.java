@@ -1,4 +1,4 @@
-package com.sosow0212.toss.exam1.exam2;
+package com.sosow0212.exam.exam1.exam2;
 
 public class q1_2 {
 

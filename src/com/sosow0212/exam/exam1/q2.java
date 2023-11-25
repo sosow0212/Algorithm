@@ -1,4 +1,4 @@
-package com.sosow0212.toss.exam1;
+package com.sosow0212.exam.exam1;
 
 import java.util.Scanner;
 
