@@ -7,16 +7,14 @@ import java.util.Queue;
 public class 붕대감기 {
 
     public static int solution(int[] bandage, int health, int[][] attacks) {
-        int answer = 0;
-
         Queue<int[]> attackQueue = new LinkedList<>(Arrays.asList(attacks));
+
         int needTime = bandage[0];
         int healForTime = bandage[1];
         int bonusHeal = bandage[2];
 
         int nowHealth = health;
         int successCount = 0;
-
         int time = 0;
 
         while (!attackQueue.isEmpty() && nowHealth >= 1) {
