@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+// ret 23.12.14
 public class q3 {
 
     static int winCount;
