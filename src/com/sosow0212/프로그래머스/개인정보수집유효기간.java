@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 
 public class 개인정보수집유효기간 {
+    
     public static List<Integer> solution(String today, String[] terms, String[] privacies) {
         List<Integer> answer = new ArrayList<>();
 
