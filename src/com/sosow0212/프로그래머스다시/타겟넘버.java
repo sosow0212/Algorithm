@@ -2,7 +2,8 @@ package com.sosow0212.프로그래머스다시;
 
 public class 타겟넘버 {
 
-    static int target;
+    // 다시 확인하기, 다른 방법??
+    static int target; 
     static int[] numbers;
     static int answer;
 
