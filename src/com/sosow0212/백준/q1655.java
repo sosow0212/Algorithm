@@ -8,6 +8,9 @@ import java.util.PriorityQueue;
 import java.util.Scanner;
 
 public class q1655 {
+
+    // pq 알고리즘
+    
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
