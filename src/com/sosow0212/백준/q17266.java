@@ -33,6 +33,7 @@ public class q17266 {
             }
         }
 
+        String s = "";
         System.out.println(answer);
     }
 
