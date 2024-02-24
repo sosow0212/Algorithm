@@ -33,7 +33,9 @@ public class q2092 {
             int x = find(meeting[0]);
             int y = find(meeting[1]);
 
+            if(x == 0 || y == 0) {
             union(x, y);
+            }
         }
 
         for (int i = 0; i < parent.length; i++) {
