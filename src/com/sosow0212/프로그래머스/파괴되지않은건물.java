@@ -1,8 +1,11 @@
 package com.sosow0212.프로그래머스;
 
-import java.util.Arrays;
-
 public class 파괴되지않은건물 {
+
+    /**
+     * 시간 초과!
+     * 누적합으로 풀어야할듯
+     */
 
     public static int solution(int[][] board, int[][] skill) {
         int answer = 0;
@@ -10,26 +13,21 @@ public class 파괴되지않은건물 {
         int n = board.length;
         int m = board[0].length;
 
-        int[][] sum = new int[n][m];
-
-        for (int[] info : skill) {
-            int type = info[0];
-            int row = info[1];
-            int col = info[2];
-            int nr = info[3];
-            int nc = info[4];
-            int damage = info[5];
-
-            if (type == 1) {
-                for (int i = row; i <= nr; i++) {
-                    for (int j = col; j <= nc; j++) {
-                        sum[i][j] -= damage;
+        int[][] prefix = new int[n][m];
+        for (int[] s : skill) {
+            if (s[0] == 1) {
+                for (int j = s[1]; j <= s[3]; j++) {
+                    for (int k = s[2]; k <= s[4]; k++) {
+                        prefix[j][k] -= s[5];
                     }
                 }
-            } else {
-                for (int i = row; i <= nr; i++) {
-                    for (int j = col; j <= nc; j++) {
-                        sum[i][j] += damage;
+                continue;
+            }
+
+            if (s[0] == 2) {
+                for (int j = s[1]; j <= s[3]; j++) {
+                    for (int k = s[2]; k <= s[4]; k++) {
+                        prefix[j][k] += s[5];
                     }
                 }
             }
@@ -37,8 +35,9 @@ public class 파괴되지않은건물 {
 
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < m; j++) {
-//                board[i][j] += sum[i][j];
-                if (board[i][j] + sum[i][j] >= 1) {
+                board[i][j] += prefix[i][j];
+
+                if (board[i][j] > 0) {
                     answer++;
                 }
             }
