@@ -1,11 +1,9 @@
 package com.sosow0212.프로그래머스;
 
-import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import java.util.Queue;
 import java.util.Stack;
 
 public class 과제진행하기 {
@@ -33,48 +31,59 @@ public class 과제진행하기 {
     }
 
     public static String[] solution(String[][] plans) {
-        String[] answer = new String[plans.length];
+        List<String> answer = new ArrayList<>();
 
         List<Plan> planList = new ArrayList<>();
         for (String[] plan : plans) {
             planList.add(new Plan(plan[0], getTime(plan[1]), Integer.parseInt(plan[2])));
         }
         Collections.sort(planList);
-        Queue<Plan> queue = new ArrayDeque<>(planList);
+
         Stack<Plan> waitList = new Stack<>();
 
-        int index = 0;
-        while (!queue.isEmpty()) {
-            Plan now = queue.poll();
+        int nowTime = -1;
 
-            int nowTime = now.startTime;
-
-            if (!queue.isEmpty()) {
-                Plan next = queue.poll();
-
-                if (now.startTime + now.needTime < next.startTime) {
-                    answer[index] = now.sub;
-                    index++;
-                    nowTime += now.needTime;
-                    continue;
-                }
-
-                int remain = next.needTime - (next.startTime - nowTime);
-                waitList.push(new Plan(next.sub, remain));
+        for (int i = 0; i < planList.size(); i++) {
+            if (waitList.isEmpty()) {
+                waitList.push(planList.get(i));
                 continue;
             }
 
-            answer[index] = now.sub;
-            index++;
+            Plan nowPlan = waitList.peek();
+            Plan newPlan = planList.get(i);
 
-            while (!waitList.isEmpty()) {
-                Plan next = waitList.pop();
-                answer[index] = next.sub;
-                index++;
+            nowTime = nowPlan.startTime;
+
+            if (nowTime + nowPlan.needTime <= newPlan.startTime) {
+                permutatioon(waitList, newPlan, nowTime, answer);
+            } else {
+                nowPlan.needTime -= newPlan.startTime - nowTime;
             }
+
+            waitList.push(newPlan);
         }
 
-        return answer;
+        while (!waitList.isEmpty()) {
+            answer.add(waitList.pop().sub);
+        }
+
+        return answer.toArray(new String[0]);
+    }
+
+    public static void permutatioon(Stack<Plan> waitList, Plan newPlan, int nowTime, List<String> answer) {
+        if (waitList.isEmpty()) {
+            return;
+        }
+
+        Plan curAss = waitList.peek();
+
+        if (nowTime + curAss.needTime <= newPlan.startTime) {
+            answer.add(waitList.pop().sub);
+            permutatioon(waitList, newPlan, nowTime + curAss.needTime, answer);
+            return;
+        }
+
+        curAss.needTime -= newPlan.startTime - nowTime;
     }
 
     static int getTime(String startTime) {
