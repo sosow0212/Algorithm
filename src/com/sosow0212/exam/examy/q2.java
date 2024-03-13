@@ -6,7 +6,6 @@ public class q2 {
     private static int[][] dp;
     private static int[] dy = {1, -2};
     private static int[] dx = {1, 1};
-    private static int count = 0;
     private static boolean has;
     private static int maxX;
     private static int maxY;
