@@ -6,6 +6,7 @@ import java.util.Set;
 
 public class q2 {
 
+    // union-find 기출 다시 풀기
     static int[] parent;
 
     public static int solve(int n, int[][] networks, int[][] repair) {
