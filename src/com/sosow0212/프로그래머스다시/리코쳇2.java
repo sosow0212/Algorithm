@@ -92,8 +92,9 @@ public class 리코쳇2 {
 
     public static void main(String[] args) {
         String[] board = {"...D..R", ".D.G...", "....D.D", "D....D.", "..D...."};
+        리코쳇2 sol = new 리코쳇2();
 
         // 7
-        System.out.println(solution(board));
+        System.out.println(sol.solution(board));
     }
 }
