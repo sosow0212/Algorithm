@@ -1,3 +1,4 @@
+
 package com.sosow0212.프로그래머스다시;
 
 import java.util.LinkedList;
@@ -25,7 +26,7 @@ public class 리코쳇2 {
         }
     }
 
-    public static int solution(String[] board) {
+    public int solution(String[] board) {
         int answer = 0;
         boolean goal = false;
 
